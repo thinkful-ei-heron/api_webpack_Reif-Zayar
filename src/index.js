@@ -31,15 +31,32 @@ const main = function () {
   //     console.log(items);
   //   });
 
+  // api.getItems()
+  // .then(res => res.json())
+  // .then((items) => {
+  //   const item = items[0];
+  //   return api.updateItem(item.id, { name: 'foobar' });
+  // })
+  // .then(res => res.json())
+  // .then(() => console.log('updated!'));
+
   api.getItems()
-    .then(res => res.json())
-    .then((items) => {
-      items.forEach((item) => store.addItem(item));
-      shoppingList.render();
-    });
+  .then(res => res.json())
+  .then(items => {
+    const item = store.items[0];
+    console.log('current name: ' + item.name);
+    store.findAndUpdate(item.id, { name: 'foobar' });
+    console.log('new name: ' + item.name);
+  })
+  .then((items) => {
+    items.forEach((item) => store.addItem(item));
+    shoppingList.render();
+  });
 
   shoppingList.bindEventListeners();
   shoppingList.render();
+
+
 };
 
 $(main);
