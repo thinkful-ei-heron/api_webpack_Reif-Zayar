@@ -26,5 +26,6 @@ const updateItem = function (id, updateData) {
 export default {
   getItems,
   createItem,
-  updateItem
+  updateItem,
+  deleteItem
 };
