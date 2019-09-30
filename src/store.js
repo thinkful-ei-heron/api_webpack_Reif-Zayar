@@ -1,6 +1,7 @@
 // import item from './item';
 
 const items = [];
+let errors = {error: null};
 let hideCheckeditems = false;
 
 const findById = function (id) {
@@ -31,5 +32,6 @@ export default {
   addItem,
   findAndUpdate,
   findAndDelete,
-  toggleCheckedFilter
+  toggleCheckedFilter,
+  errors
 };

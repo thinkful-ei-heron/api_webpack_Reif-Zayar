@@ -16,6 +16,10 @@ const main = function () {
       items.forEach((item) => store.addItem(item));
       shoppingList.render();
     });
+  
+  // console.log(store.items);
+  // // api.deleteItem("ck16k6phi000i0k2o1pxkc2k7");
+  // // console.log(api.getItems());
 
   shoppingList.bindEventListeners();
   shoppingList.render();
