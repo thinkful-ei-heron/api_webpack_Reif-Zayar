@@ -20,8 +20,8 @@ const updateItem = function (id, updateData) {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updateData)
-  })
-}
+  });
+};
 
 export default {
   getItems,
