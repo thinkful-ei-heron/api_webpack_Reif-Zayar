@@ -96,7 +96,7 @@ const handleItemCheckClicked = function () {
   $('.js-shopping-list').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
     let item = store.findById(id);
-    api.updateItem(item.id, { checked: item.checked })
+    api.updateItem(item.id, { checked: !item.checked })
       .then(() => {
         store.findAndUpdate(item.id, { checked: !item.checked });
         render();
