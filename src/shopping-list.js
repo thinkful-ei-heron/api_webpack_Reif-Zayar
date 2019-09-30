@@ -35,9 +35,6 @@ const generateShoppingItemsString = function (shoppingList) {
 
 const render = function () {
   // Filter item list if store prop is true by item.checked === false
-  if (store.errors.error) {
-    store.errors.error = ''
-  }
   let items = [...store.items];
   if (store.hideCheckedItems) {
     items = items.filter(item => !item.checked);
@@ -48,7 +45,9 @@ const render = function () {
 
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
-  $('.js-shopping-list').append(store.errors.error);
+  if (store.errors.error) {
+    $('.js-shopping-list').append(store.errors.error);
+  }
 };
 
 const handleNewItemSubmit = function () {
@@ -57,7 +56,7 @@ const handleNewItemSubmit = function () {
     const newItemName = $('.js-shopping-list-entry').val();
     $('.js-shopping-list-entry').val('');
     api.createItem(newItemName)
-      .then(res => res.json())
+      // .then(res => res.json())
       .then((newItem) => {
         store.addItem(newItem);
         render();

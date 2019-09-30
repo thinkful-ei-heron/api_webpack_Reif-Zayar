@@ -1,6 +1,7 @@
+import $ from 'jquery';
 import store from './store';
 
-const BASE_URL = 'https://thinkful-list-api.herokuapp.com/reif';
+const BASE_URL = 'https://thinkful-list-api.herokuapp.com/zayar';
 
 const getItems = function () {
   return apiFetch(`${BASE_URL}/items`);
@@ -36,16 +37,21 @@ const responseCheck = function (res) {
   let error;
   if (!res.ok) {
     error = `Status code ${res.status} not ok`;
-    return Promise.reject(error);
+    store.errors.error = error;
+    $('.js-shopping-list').append(store.errors.error)
+    throw Error(error);
   }
   return res
 }
 
 const apiFetch = function (...args) {
   return fetch(...args)
-    .then(resp => responseCheck(resp))
+    .then(resp => {
+      responseCheck(resp);
+      return resp;
+    })
     .catch(error => {
-      store.errors.error = error;
+      console.log(error);
     });
 }
 
