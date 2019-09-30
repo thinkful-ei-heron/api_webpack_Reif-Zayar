@@ -1,7 +1,7 @@
 // import item from './item';
 
 const items = [];
-let errors = {error: null};
+let errors = { error: false };
 let hideCheckeditems = false;
 
 const findById = function (id) {

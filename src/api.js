@@ -30,24 +30,33 @@ const deleteItem = function (id) {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }
   });
-}
+};
 
 const responseCheck = function (res) {
-  let error;
   if (!res.ok) {
-    error = `Status code ${res.status} not ok`;
-    return Promise.reject(error);
+    store.errors.error = res.status;
+    document.getElementById('error-container').innerHTML = (`Error: ${res.status}`);
+    return Promise.reject(`Error code: ${res.status}`);
   }
-  return res
-}
+  document.getElementById('error-container').innerHTML = '';
+  return res;
+};
 
 const apiFetch = function (...args) {
   return fetch(...args)
-    .then(resp => responseCheck(resp))
-    .catch(error => {
-      store.errors.error = error;
+    .then(resp => {
+      responseCheck(resp);
+      return resp;
+    })
+    .catch(resp => {
+      document.getElementById('error-container').innerHTML = '';
+      store.errors.error = resp;
+      document.getElementById('error-container').innerHTML = (`Error: ${resp}`);
     });
-}
+
+
+  // .then(resp => responseCheck(resp));
+};
 
 export default {
   getItems,
