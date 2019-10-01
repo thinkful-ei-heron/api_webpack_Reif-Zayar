@@ -58,7 +58,8 @@ const handleNewItemSubmit = function () {
       .then((newItem) => {
         store.addItem(newItem);
         render();
-      });
+      })
+      .catch(error => console.log(`No name provided`));
   });
 };
 

@@ -9,7 +9,12 @@ const findById = function (id) {
 };
 
 const addItem = function (item) {
-  this.items.push(item);
+  if (item.name) {
+    console.log(item);
+    this.items.push(item);
+  } else {
+    throw new Error(item.message)
+  }
 };
 
 const findAndUpdate = function (id, newData) {
