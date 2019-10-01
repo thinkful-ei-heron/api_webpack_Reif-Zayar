@@ -35,7 +35,7 @@ const deleteItem = function (id) {
 const responseCheck = function (res) {
   if (!res.ok) {
     store.errors.error = res.status;
-    document.getElementById('error-container').innerHTML = (`Error: ${store.errors.error}`);
+    document.getElementById('error-container').innerHTML = (`Error code: ${store.errors.error}`);
     return Promise.reject(`Error code: ${store.errors.error}`);
   }
   document.getElementById('error-container').innerHTML = '';
@@ -46,17 +46,12 @@ const apiFetch = function (...args) {
   return fetch(...args)
     .then(resp => {
       return responseCheck(resp);
-      // return resp;
     })
     .catch(error => {
-      console.log(error);
-      // document.getElementById('error-container').innerHTML = '';
-      // store.errors.error = resp;
-      // document.getElementById('error-container').innerHTML = (`Error: ${resp}`);
+      // console.log(error);
+      store.errors.error = error;
+      document.getElementById('error-container').innerHTML = (`${store.errors.error}`);
     });
-
-
-  // .then(resp => responseCheck(resp));
 };
 
 export default {
