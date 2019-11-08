@@ -13,7 +13,7 @@ const addItem = function (item) {
     console.log(item);
     this.items.push(item);
   } else {
-    throw new Error(item.message)
+    throw new Error(item.message);
   }
 };
 
